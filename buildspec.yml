@@ -1,0 +1,8 @@
+version: 0.2
+phasees:
+  install: 
+    runtime-versions: 'php-7.4:al2'
+    post_build:
+      commands:
+        - echo "Updating s3 bucket.."
+        - aws s2 sync * s3://rojdemo2022 --delete
