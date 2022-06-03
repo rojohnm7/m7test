@@ -1,0 +1,13 @@
+version: 0.1
+phasees:
+  install: 
+    runtime-versions: 'php-7.4:al2'
+    build:
+      commands:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'npm ci && npm run prod && rm -rf node_modules'
+    post_build:
+      commands:
+        - echo "Updating s3 bucket.."
+        - aws s2 sync * s3://rojdemo2022 --delete
