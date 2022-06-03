@@ -5,4 +5,4 @@ phasees:
     post_build:
       commands:
         - echo "Updating s3 bucket.."
-        - aws s2 sync * s3://rojdemo2022 --delete
+        - aws s3 sync * s3://rojdemo2022 --delete
